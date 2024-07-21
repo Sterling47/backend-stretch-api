@@ -5,9 +5,9 @@
  */
 require('dotenv').config()
 module.exports = {
-
   development: {
     client: 'pg',
+
     connection: {
       host : 'localhost',
       user : 'postgres',
@@ -25,34 +25,24 @@ module.exports = {
 
   staging: {
     client: 'postgresql',
+
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
+      host: '127.0.0.1',  
+      port: 5432,  
+      user: 'postgres',  
+      password: 'your-password',  
+      database: 'postgres'
     }
   },
-
   production: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password'
-    },
-    pool: {
-      min: 2,
-      max: 10
-    },
-    migrations: {
-      tableName: 'knex_migrations'
+      host: '127.0.0.1',  
+      port: 5432,  
+      user: 'postgres',  
+      password: 'your-production-password',  
+      database: 'postgres' 
     }
   }
-
 };
+
