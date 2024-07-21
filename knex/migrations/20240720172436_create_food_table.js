@@ -5,13 +5,14 @@
 exports.up = function(knex) {
   return knex.schema.createTable('food_table',function(table) {
     table.increments('id');
+    table.primary('id')
     table.bigInteger('fdc_id');
     table.string('data_type');
     table.text('description');
-    table.text('food_category_id');
+    table.text('food_category_id').defaultTo(null);
     table.dateTime('publication_date');
-    table.string('market_country');
-    table.text('trade_channel');
+    table.string('market_country',20);
+    table.text('trade_channel').defaultTo(null);
     table.text('microbe_data');
   })
 };
