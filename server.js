@@ -15,6 +15,8 @@ app.get('/foodcategory/:id', async (req,res) => {
     try {
         const foodCategory = await database('branded_food_table as b').select('b.fdc_id', 'b.brand_name', 'b.ingredients', 'b.serving_size', 'b.serving_size_unit', 'b.branded_food_category')
             .where('b.fdc_id', '=', req.params.id)
+            .join('food_table as f', 'b.fdc_id', 'f.fdc_id').select('b.fdc_id', 'b.brand_name', 'b.ingredients', 'b.serving_size', 'b.serving_size_unit', 'b.branded_food_category', 'f.description')
+            .whereRaw('f.fdc_id = b.fdc_id')
             res.status(200).json(foodCategory.slice(0, 100))
     } catch(error) {
         res.status(500).json({error})
@@ -25,7 +27,3 @@ app.get('/foodcategory/:id', async (req,res) => {
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`)
 })
-
-// Columns: fdc_id, brand_name, 
-//(from food_table) 
-//description, ingredients, serving_size, serving_size_unit, branded_food_category
