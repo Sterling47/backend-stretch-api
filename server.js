@@ -43,6 +43,21 @@ app.get('/nutrientCategory/:fdc_id', async (req, res) => {
     }
 })
 
+app.get('/api/food_categories', async (req,res) => {
+    try {
+        const distinctCategories = await database('branded_food_table')
+        .select('branded_food_category').distinctOn('branded_food_category');
+        let foodCategories = [];
+        distinctCategories.forEach(foodCategory => {
+            foodCategories.push(foodCategory.branded_food_category)
+        })
+        res.status(200).json(foodCategories);
+    }
+    catch (error) {
+        res.status(500).json({error:error})
+    }
+})
+
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`)
 })
