@@ -54,7 +54,7 @@ app.get('/api/food_categories', async (req,res) => {
         res.status(200).json(foodCategories);
     }
     catch (error) {
-        res.status(500).json({error:error})
+        res.status(500).json({error})
     }
 })
 
