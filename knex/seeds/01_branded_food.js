@@ -23,7 +23,7 @@ const processFile = async (i) => {
 exports.seed = async function(knex) {
   try {
     await knex('branded_food_table').del();
-    for (var i = 1; i < 21; i++) {
+    for (var i = 1; i < 2; i++) {
       let records = await processFile(i);
       const brandedFoodObjects = records.map(record => {
         return {fdc_id:record[0], brand_owner:record[1],brand_name:record[2], subbrand_name:record[3], gtin_upc:record[4], ingredients:record[5],
