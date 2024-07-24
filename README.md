@@ -12,6 +12,15 @@ To be used with [backend-strecth](https://github.com/Sterling47/backend-stretch)
 
 4. Run `npm start` to start the server.
 
+## Set Up SQL/Knex
+1. Once you download your SQL (PostgreSQL, mySQL, SQLite3), configure the `knexfile.js` with your specific SQL connection configurations
+
+2. Run `npm run dev` to migrate and seed tables
+
+## Technologies Used
+- Express.js, Knex.js, PostgreSQL on back-end
+- Vite/React, Cypress, React Router on front-end
+
 ## Endpoints
 
 ***
@@ -34,4 +43,6 @@ Sample response (200):
         "description": "Tutturosso Green 14.5oz. NSA Italian Diced Tomatoes"
     }
 ```
+Sample response (500): 
 
+`Internal Server Response Error`
