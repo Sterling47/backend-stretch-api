@@ -9,7 +9,7 @@ const {finished} = require('stream/promises');
 const processFile = async (i) => {
   const records = [];
   const parser = fs
-    .createReadStream(`csv/branded_food/branded_food${i}.csv`)
+    .createReadStream(`csv/branded_food/branded_food1.csv`)
     .pipe(parse({relax_quotes: true, from_line: 2, skip_records_with_error: true, skip_records_with_empty_values: true}));
   parser.on('readable', function(){
     let record; while ((record = parser.read()) !== null) {
@@ -23,8 +23,7 @@ const processFile = async (i) => {
 exports.seed = async function(knex) {
   try {
     await knex('branded_food_table').del();
-    for (var i = 1; i < 2; i++) {
-      let records = await processFile(i);
+      let records = await processFile(1);
       const brandedFoodObjects = records.map(record => {
         return {fdc_id:record[0], brand_owner:record[1],brand_name:record[2], subbrand_name:record[3], gtin_upc:record[4], ingredients:record[5],
           not_a_significant_source_of:record[6], serving_size:record[7], serving_size_unit:record[8], household_serving_fulltext:record[9],
@@ -39,7 +38,6 @@ exports.seed = async function(knex) {
         }
       })
     }
-  }
   catch (error) {
     console.log(`Error seeding data: ${error}`)
     console.log()
